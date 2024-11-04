@@ -9,6 +9,7 @@ The **GitHub Follower Tracker Website** is a web application designed to efficie
 - [Technical Stack](#technical-stack)
 - [Images](#images)
 - [Usage](#usage)
+- [License](#license)
 - [Author](#author)
 
 ## Getting Started
@@ -68,6 +69,9 @@ pip install flask requests
 1. **Input GitHub Username**: Enter a GitHub username on the homepage.
 2. **View Results**: Results will display follower and following lists, mutual followers, and non-followers.
 3. **Analyze Relationships**: Utilize the organized data for insights into user connections.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
