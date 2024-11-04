@@ -53,3 +53,8 @@ def index():
                                non_followers=non_followers, both_followers=both_followers)
 
     return render_template('index.html')
+
+
+# FOR LOCAL HOST TESTING
+# if __name__ == '__main__':
+#     app.run(debug=True)
