@@ -86,7 +86,7 @@
 <body>
     <header class="header text-center py-3">
         <h1>Results for {{ username }}</h1>
-        <a href="/" class="btn btn-light">Search Another User</a>
+        <a href="/" class="btn btn-light" onclick="clearInput()">Search Another User</a>
     </header>
 
     <main class="content">
@@ -158,5 +158,12 @@
     <footer class="footer text-center py-3 mt-auto">
         <p>&copy; 2024 GitHub Follower Tracker</p>
     </footer>
+
+    <script>
+        function clearInput() {
+            document.getElementById("username").value = "";
+        }
+    </script>
+    
 </body>
 </html>
