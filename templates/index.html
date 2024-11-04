@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Follower Tracker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d0d0d;
+            color: #00ff7f; 
+        }
+
+        .header, .footer {
+            background: #040404; 
+            color: #00ff7f;
+            border-bottom: 2px solid #00ff7f; 
+        }
+
+        .header h1 {
+            color: #00ff7f; 
+        }
+        .header p{
+            color: aliceblue;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-control {
+            background-color: #1a1a1a; /* Darker input background */
+            color: #00ff7f; /* Green input text */
+            border: 1px solid #00ff7f; /* Green border for input */
+        }
+
+        .form-control::placeholder {
+            color: #5effb8; /* Lighter green for placeholder text */
+        }
+
+        .form-control:focus {
+            border-color: #00cc66; /* Lighter green border on focus */
+            box-shadow: 0 0 5px #00cc66;
+        }
+
+        .btn-primary {
+            background-color: #00ff7f; /* Green button background */
+            border-color: #00cc66; /* Green button border */
+            color: #0d0d0d; /* Dark text for contrast */
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #00cc66; /* Darker green on hover */
+            transform: scale(1.05); /* Slight scaling effect */
+            color: #0d0d0d;
+        }
+
+        .footer {
+            background: rgba(4,106,4,0.9); 
+            color: aliceblue;
+            border-top: 2px solid #00ff7f; 
+            margin-top: auto; /* Ensures footer stays at bottom */
+            padding: 15px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header text-center py-3">
+        <h1>GitHub Follower Tracker</h1>
+        <p>Find out who follows you back and who doesn't</p>
+    </header>
+
+    <main class="content">
+        <form action="/" method="POST" class="text-center">
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Enter GitHub Username" class="form-control text-center" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </main>
+
+    <footer class="footer text-center">
+        <p>&copy; 2024 GitHub Follower Tracker</p>
+    </footer>
+</body>
+</html>

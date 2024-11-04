@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Follower Tracker Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d0d0d; 
+            color: #00ff7f;
+        }
+
+        .header, .footer {
+            background: #040404; 
+            color: #00ff7f;
+            border-bottom: 2px solid #00ff7f; 
+        }
+
+        .header h1, .header a {
+            color: #00ff7f;
+        }
+
+        .header a.btn-light {
+            background-color: #00ff7f; 
+            color: #0d0d0d; 
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .header a.btn-light:hover {
+            background-color: #00cc66; 
+            color: #0d0d0d;
+            transform: scale(1.05); /* Hover scaling effect */
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #1a1a1a; 
+            color: aliceblue;
+            border: 1px solid #00ff7f;
+            margin-bottom: 15px;
+        }
+
+        .card-header {
+            color: #0d0d0d;
+            background-color: #00ff7f; 
+        }
+
+        .bg-primary,.bg-success,.bg-danger {
+            background-color: #00ff7f !important; 
+        }
+
+        .footer {
+            background: rgba(4, 106, 4, 0.9); 
+            color: #0d0d0d;
+            border-top: 2px solid #00ff7f; 
+            margin-top: auto; /* Ensures footer stays at bottom */
+            padding: 15px;
+        }
+
+        .footer p {
+            margin: 0;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <header class="header text-center py-3">
+        <h1>Results for {{ username }}</h1>
+        <a href="/" class="btn btn-light">Search Another User</a>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-dark">
+                            Followers ({{ followers|length }}) 
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {% for user in followers %}
+                                    <li>{{ user }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-dark">
+                            Following ({{ following|length }}) 
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {% for user in following %}
+                                    <li>{{ user }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-dark">
+                            Mutual Followers ({{ both_followers|length }}) 
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {% for user in both_followers %}
+                                    <li>{{ user }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-danger text-dark">
+                            Not Following Back ({{ non_followers|length }}) 
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {% for user in non_followers %}
+                                    <li>{{ user }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer text-center py-3 mt-auto">
+        <p>&copy; 2024 GitHub Follower Tracker</p>
+    </footer>
+</body>
+</html>
