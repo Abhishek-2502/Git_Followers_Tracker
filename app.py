@@ -7,7 +7,12 @@ app = Flask(__name__)
 def get_github_followers(username):
     url = f"https://api.github.com/users/{username}/followers"
     params = {'per_page': 100, 'page': 1}
-    headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
+    token = os.getenv("GITHUB_TOKEN")
+    if not token:
+        print("GITHUB_TOKEN not set in environment!")
+        return []
+    headers = {'Authorization': f'token {token}'}
+
     followers_list = []
 
     while True:
@@ -26,7 +31,11 @@ def get_github_followers(username):
 def get_github_following(username):
     url = f"https://api.github.com/users/{username}/following"
     params = {'per_page': 100, 'page': 1}
-    headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
+    token = os.getenv("GITHUB_TOKEN")
+    if not token:
+        print("GITHUB_TOKEN not set in environment!")
+        return []
+    headers = {'Authorization': f'token {token}'}
     following_list = []
 
     while True:
