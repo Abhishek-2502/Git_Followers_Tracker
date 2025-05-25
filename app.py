@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request
 import requests
+import os
 
 app = Flask(__name__)
 
 def get_github_followers(username):
     url = f"https://api.github.com/users/{username}/followers"
     params = {'per_page': 100, 'page': 1}
+    headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
     followers_list = []
 
     while True:
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, headers=headers)
         if response.status_code == 200:
             followers = response.json()
             if not followers:
@@ -24,10 +26,11 @@ def get_github_followers(username):
 def get_github_following(username):
     url = f"https://api.github.com/users/{username}/following"
     params = {'per_page': 100, 'page': 1}
+    headers = {'Authorization': f'token {os.getenv("GITHUB_TOKEN")}'}
     following_list = []
 
     while True:
-        response = requests.get(url, params=params)
+        response = requests.get(url, params=params, headers=headers)
         if response.status_code == 200:
             followings = response.json()
             if not followings:
