@@ -53,6 +53,11 @@ def get_github_following(username):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    token_warning = False
+    if not os.getenv("GITHUB_TOKEN"):
+        print("GITHUB_TOKEN not set in environment!")  # still logs on server
+        token_warning = True
+
     if request.method == 'POST':
         username = request.form.get('username')
         followers = set(get_github_followers(username))
@@ -62,7 +67,7 @@ def index():
         both_followers = followers & following
 
         return render_template('result.html', username=username, followers=followers, following=following,
-                               non_followers=non_followers, both_followers=both_followers)
+                               non_followers=non_followers, both_followers=both_followers, token_warning=token_warning)
 
     return render_template('index.html')
 

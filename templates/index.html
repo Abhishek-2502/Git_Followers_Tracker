@@ -111,5 +111,11 @@
         </a>
     </footer>
 
+    {% if token_warning %}
+    <script>
+        console.warn("GITHUB_TOKEN not set in environment!");
+    </script>
+    {% endif %}
+
 </body>
 </html>
