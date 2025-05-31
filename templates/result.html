@@ -1,191 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GitHub Follower Tracker Results</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/ios-filled/50/40C057/github.png">
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://img.icons8.com/ios-filled/50/40C057/github.png"
+    />
+
+    <!-- Vanta.js + Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            background-color: #0d0d0d; 
-            color: #00ff7f;
-        }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        color: #00ff7f;
+      }
 
-        .header, .footer {
-            background: #040404; 
-            color: #00ff7f;
-            border-bottom: 2px solid #00ff7f; 
-        }
+      .header,
+      .footer {
+        background: transparent
+        color: #ffffff;
+      }
 
-        .header h1 {
-            color: #00ff7f;
-            word-wrap: break-word; /* Allow long words to break onto the next line */
-            overflow-wrap: break-word; /* Similar to word-wrap */
-            max-width: 90%; /* Set a max width for better responsiveness */
-            margin: auto; /* Center align */
-            margin-bottom: 20px; /* Add space below the heading */
-        }
+      .header h1 {
+        color: #ffffff;
+        word-wrap: break-word; /* Allow long words to break onto the next line */
+        overflow-wrap: break-word; /* Similar to word-wrap */
+        max-width: 90%; /* Set a max width for better responsiveness */
+        margin: auto; /* Center align */
+        margin-bottom: 20px; /* Add space below the heading */
+      }
 
-        .header a {
-            color: #00ff7f;
-        }
+      .header a {
+        color: #00ff7f;
+      }
 
-        .header a.btn-light {
-            background-color: #00ff7f; 
-            color: #0d0d0d; 
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.3s;
-        }
+      .header a.btn-light {
+        background-color: #00ff7f;
+        color: #0d0d0d;
+        font-weight: bold;
+        transition: background-color 0.3s, transform 0.3s;
+      }
 
-        .header a.btn-light:hover {
-            background-color: #00cc66; 
-            color: #0d0d0d;
-            transform: scale(1.05); /* Hover scaling effect */
-        }
+      .header a.btn-light:hover {
+        background-color: #00cc66;
+        color: #0d0d0d;
+        transform: scale(1.05); /* Hover scaling effect */
+      }
 
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
+      .content {
+        padding: 20px;
+        min-height: calc(100vh - 160px); /* adjust height to push footer down */
+        position: relative;
+        z-index: 1;
+      }
 
-        .card {
-            background-color: #1a1a1a; 
-            color: aliceblue;
-            border: 1px solid #00ff7f;
-            margin-bottom: 15px;
-        }
+      .card {
+        background-color: #1a1a1a;
+        color: aliceblue;
+        border: 1px solid #00ff7f;
+        margin-top: 20px;
+        margin-bottom: 15px;
+      }
 
-        .card-header {
-            color: #0d0d0d;
-            background-color: #00ff7f; 
-        }
+      .card-header {
+        color: #0d0d0d;
+        background-color: #00ff7f;
+      }
 
-        .card-body a {
-            color: white !important;
-            text-decoration: none; /* Optional: Removes underline */
-        }
-        
-        .card-body a:hover {
-            color: #00ff7f !important; /* Optional: Changes color on hover */
-        }
-        
+      .card-body a {
+        color: white !important;
+        text-decoration: none; /* Optional: Removes underline */
+      }
 
-        .bg-primary,.bg-success,.bg-danger {
-            background-color: #00ff7f !important; 
-        }
+      .card-body a:hover {
+        color: #00ff7f !important; /* Optional: Changes color on hover */
+      }
 
-        .footer {
-            display: flex;
-            justify-content: space-between; /* Space between the content */
-            align-items: center; /* Center vertically */
-            background: rgba(4,106,4,0.9); 
-            color: aliceblue;
-            border-top: 2px solid #00ff7f; 
-            margin-top: auto; /* Ensures footer stays at bottom */
-            padding: 15px;
-        }
+      .bg-primary,
+      .bg-success,
+      .bg-danger {
+        background-color: #00ff7f !important;
+      }
 
-        .footer p {
-            margin: 0;
-            color: aliceblue;
-        }
+      .header {
+        background: transparent;
+        color: #ffffff;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 255, 127, 0.2); /* gentle glow */
+        z-index: 2;
+      }
+
+      .footer {
+        background: transparent;
+        border-top: 2px solid #00ff7f;
+        height: 70px;
+        z-index: 2;
+      }
+
+      .footer p {
+        margin: 0;
+        color: aliceblue;
+      }
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div
+      id="vanta-bg"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      "
+    ></div>
+
     <header class="header text-center py-3">
-        <h1>Results for {{ username }}</h1>
-        <a href="/" class="btn btn-light" onclick="clearInput()">Search Another User</a>
+      <h1>Results for {{ username }}</h1>
+      <a href="/" class="btn btn-light" onclick="clearInput()"
+        >Search Another User</a
+      >
     </header>
 
     <main class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header bg-primary text-dark">
-                            Followers ({{ followers|length }}) 
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                {% for user in followers %}
-                                    <li><a href="https://github.com/{{ user }}" target="_blank" rel="noopener noreferrer">{{ user }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header bg-primary text-dark">
-                            Following ({{ following|length }}) 
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                {% for user in following %}
-                                    <li><a href="https://github.com/{{ user }}" target="_blank" rel="noopener noreferrer">{{ user }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary text-dark">
+                Followers ({{ followers|length }})
+              </div>
+              <div class="card-body">
+                <ul>
+                  {% for user in followers %}
+                  <li>
+                    <a
+                      href="https://github.com/{{ user }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >{{ user }}</a
+                    >
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header bg-success text-dark">
-                            Mutual Followers ({{ both_followers|length }}) 
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                {% for user in both_followers %}
-                                    <li><a href="https://github.com/{{ user }}" target="_blank" rel="noopener noreferrer">{{ user }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header bg-danger text-dark">
-                            Not Following Back ({{ non_followers|length }}) 
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                {% for user in non_followers %}
-                                    <li><a href="https://github.com/{{ user }}" target="_blank" rel="noopener noreferrer">{{ user }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary text-dark">
+                Following ({{ following|length }})
+              </div>
+              <div class="card-body">
+                <ul>
+                  {% for user in following %}
+                  <li>
+                    <a
+                      href="https://github.com/{{ user }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >{{ user }}</a
+                    >
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-success text-dark">
+                Mutual Followers ({{ both_followers|length }})
+              </div>
+              <div class="card-body">
+                <ul>
+                  {% for user in both_followers %}
+                  <li>
+                    <a
+                      href="https://github.com/{{ user }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >{{ user }}</a
+                    >
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-danger text-dark">
+                Not Following Back ({{ non_followers|length }})
+              </div>
+              <div class="card-body">
+                <ul>
+                  {% for user in non_followers %}
+                  <li>
+                    <a
+                      href="https://github.com/{{ user }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >{{ user }}</a
+                    >
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
-    <footer class="footer text-center py-3 mt-auto">
-        <p class="mb-0">&copy; 2025 by Abhishek Rajput</p>
-        <a href="https://github.com/Abhishek-2502" target="_blank" rel="noopener noreferrer">
-            <img src="https://img.icons8.com/windows/32/FFFFFF/github.png" alt="GitHub Icon" style="vertical-align: middle;">
-        </a>
+    <!-- Footer -->
+    <footer
+      class="footer d-flex justify-content-between align-items-center px-3"
+    >
+      <p class="mb-0">&copy; 2025 by Abhishek Rajput</p>
+      <a
+        href="https://github.com/Abhishek-2502"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="https://img.icons8.com/windows/32/FFFFFF/github.png"
+          alt="GitHub Icon"
+        />
+      </a>
     </footer>
 
     <script>
-        function clearInput() {
-            document.getElementById("username").value = "";
-        }
+      function clearInput() {
+        document.getElementById("username").value = "";
+      }
     </script>
 
     {% if token_warning %}
     <script>
-        console.warn("GITHUB_TOKEN not set in environment!");
+      console.warn("GITHUB_TOKEN not set in environment!");
     </script>
     {% endif %}
-
-</body>
+    <!-- Vanta Fog Initialization -->
+    <script>
+      VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        highlightColor: 0x00ff7f,
+        midtoneColor: 0x0d0d0d,
+        lowlightColor: 0x001a0d,
+        baseColor: 0x000000,
+        blurFactor: 0.7,
+        speed: 1.0,
+        zoom: 1.2,
+      });
+    </script>
+  </body>
 </html>
