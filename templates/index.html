@@ -20,7 +20,7 @@
 
     <!-- Vanta.js + Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   </head>
 
   <style>
@@ -189,21 +189,19 @@
     </script>
     {% endif %}
 
-    <!-- Vanta Fog Initialization -->
+    <!-- Vanta Globe Initialization -->
     <script>
-      VANTA.FOG({
+      VANTA.GLOBE({
         el: "#vanta-bg",
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
-        highlightColor: 0x00ff7f,
-        midtoneColor: 0x0d0d0d,
-        lowlightColor: 0x001a0d,
-        baseColor: 0x000000,
-        blurFactor: 0.7,
-        speed: 1.0,
-        zoom: 1.2,
+        color: 0x00ff00,         // Bright green for globe lines
+        color2: 0x39ff14,        // Neon green for dots
+        backgroundColor: 0x111111, // Dark background
+        size: 1.2,
       });
+
     </script>
   </body>
 </html>
