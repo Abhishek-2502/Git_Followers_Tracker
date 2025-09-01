@@ -4,8 +4,10 @@ import os
 
 app = Flask(__name__)
 
+base_url = "https://api.github.com"
+
 def get_github_followers(username):
-    url = f"https://api.github.com/users/{username}/followers"
+    url = f"{base_url}/users/{username}/followers"
     params = {'per_page': 100, 'page': 1}
     token = os.getenv("GITHUB_TOKEN")
     if not token:
@@ -29,7 +31,7 @@ def get_github_followers(username):
     return followers_list
 
 def get_github_following(username):
-    url = f"https://api.github.com/users/{username}/following"
+    url = f"{base_url}/users/{username}/following"
     params = {'per_page': 100, 'page': 1}
     token = os.getenv("GITHUB_TOKEN")
     if not token:
@@ -63,11 +65,19 @@ def index():
         followers = set(get_github_followers(username))
         following = set(get_github_following(username))
 
+        # You Follow, they don't
         non_followers = following - followers
+
+        # Mutual Followers
         both_followers = followers & following
 
+        # they follow you, but you don’t
+        not_following_back = followers - following
+
         return render_template('result.html', username=username, followers=followers, following=following,
-                               non_followers=non_followers, both_followers=both_followers, token_warning=token_warning)
+                               non_followers=non_followers, both_followers=both_followers, 
+                               not_following_back=not_following_back,
+                               token_warning=token_warning)
 
     return render_template('index.html')
 
