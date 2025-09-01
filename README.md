@@ -49,8 +49,9 @@ pip install flask requests
 ## Features
 
 - **Fetch Followers and Following**: Retrieve and display lists of a user's followers and the users they follow.
-- **Identify Non-Followers**: List users who are followed but do not follow back.
+- **Identify Non-Followers**: List users who you followed but they do not follow back.
 - **Mutual Followers**: Show users who mutually follow the specified account.
+- **Not Following Back**: List users who followed you but you do not follow back.
 - **Responsive UI**: Designed for optimal performance on both desktop and mobile devices.
 
 ## Technical Stack
