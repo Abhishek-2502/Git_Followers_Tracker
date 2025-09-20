@@ -1,6 +1,6 @@
-# GitHub Follower Tracker Website
+# GitHub Follower Tracker
 
-The **GitHub Follower Tracker Website** is a web application designed to efficiently retrieve and display follower and following data for GitHub users. It leverages the GitHub API to provide insights into user relationships on the platform.
+The **GitHub Follower Tracker** is a web application designed to efficiently retrieve and display follower and following data for GitHub users. It leverages the GitHub API to provide insights into user relationships on the platform.
 
 ## Table of Contents
 
@@ -30,7 +30,7 @@ pip install flask requests
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/YourUsername/github-follower-tracker-website
+    git clone https://github.com/Abhishek-2502/Git_Followers_Tracker
     ```
 
 2. **Navigate to the Project Directory**:
@@ -49,8 +49,9 @@ pip install flask requests
 ## Features
 
 - **Fetch Followers and Following**: Retrieve and display lists of a user's followers and the users they follow.
-- **Identify Non-Followers**: List users who are followed but do not follow back.
+- **Identify Non-Followers**: List users who you followed but they do not follow back.
 - **Mutual Followers**: Show users who mutually follow the specified account.
+- **Not Following Back**: List users who followed you but you do not follow back.
 - **Responsive UI**: Designed for optimal performance on both desktop and mobile devices.
 
 ## Technical Stack
