@@ -30,7 +30,7 @@ pip install flask requests
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/YourUsername/github-follower-tracker-website
+    git clone https://github.com/Abhishek-2502/Git_Followers_Tracker
     ```
 
 2. **Navigate to the Project Directory**:
