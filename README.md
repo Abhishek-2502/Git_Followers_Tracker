@@ -1,6 +1,6 @@
-# GitHub Follower Tracker Website
+# GitHub Follower Tracker
 
-The **GitHub Follower Tracker Website** is a web application designed to efficiently retrieve and display follower and following data for GitHub users. It leverages the GitHub API to provide insights into user relationships on the platform.
+The **GitHub Follower Tracker** is a web application designed to efficiently retrieve and display follower and following data for GitHub users. It leverages the GitHub API to provide insights into user relationships on the platform.
 
 ## Table of Contents
 
